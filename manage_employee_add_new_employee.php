@@ -1,131 +1,18 @@
-		   <!--**********************************
-            Content body start
-        ***********************************-->
-        <div class="content-body">
-
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="Home">Dashboard</a></li>
-						<li class="breadcrumb-item"><a href="manage_employee"><?=ucwords('manage employee');?></a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)"><?=ucwords('Add New Employee');?></a></li>
-                    </ol>
-                </div>
-            </div>
-            <!-- row -->
-			<div class="container-fluid">
-				
-			
-				
-				<div class="row">
-				 <form enctype="multipart/form-data"  method="POST" id="form" action="../manage employee/Action/Actionmanage_employee_add_new_employee">
-								
-                                    </form>
-						 <div class="col-lg-12">
-						   <div class="card" style="overflow-x:auto;">
-								<div class="card-body" id="UserTable">
-									<h4 class="card-title">Table</h4>
-										<table id="example" class="display nowrap" cellspacing="0" width="100%">
-											<thead>
-												<tr>
-												<th>Si No</th>
-													
-<th>name</th>
-<th>email</th>
-<th>phone</th>
-<th>address</th>
-<th>photo</th>
-<th>date of birth</th>
-<th>blood group</th>
-<th>department</th>
-<th>position</th>
-<th>emergency contact person</th>
-<th>emergency contact number</th>
-<th>employee status</th>
-<th>Edit</th>
-<th>Delete</th>
-												</tr>
-											</thead>
-											<tbody>
-											<?php
-											$formDataFull=$obj->select_any("tbl_manage_employee_add_new_employee","1 order by manage_employee_add_new_employee_id DESC");
-											$count=1;
-											if(!empty($formDataFull))
-											{
-											foreach($formDataFull as $formDataSingle)
-											{
-											
-											?>
-											<tr>
-											<td><?=$count;?></th>
-											
-<td><?=$formDataSingle['name'];?></td>
-<td><?=$formDataSingle['email'];?></td>
-<td><?=$formDataSingle['phone'];?></td>
-<td><?=$formDataSingle['address'];?></td>
 <?php
-if(!empty($formDataSingle['photo']))
-{
+/***************************************************************************
+* File name   : manage_employee_add_new_employee.php
+* Begin       : 15 April 2021
+* Author: Anupama A
+***************************************************************************/
+require_once"../config/db_connect.php";
+$obj=new db_connect;
+include"../config/null_variables.php";
+$include_style_to_head="<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css'><link rel='stylesheet' href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css'>";//datatable style to null variable
+$include_script_to_footer='<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script><script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script><script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script><script src="../manage employee/js/manage_employee_add_new_employee.js"></script>';
+include_once"../templates/head.php";
+include_once"../templates/preloader.php";
+include_once"../templates/topbar.php";
+include_once"../templates/sidebar.php";
+include_once"../manage employee/manage_employee_add_new_employee.php";//content
+include_once"../templates/footer.php";
 ?>
-<td><img src="<?=$formDataSingle['photo'];?>" width="100px" height="100px"></td>
-<?php
-}
-else
-{
-?>
-<td><?=$formDataSingle['photo'];?></td>
-<?php
-}
-?>
-<td><?=$formDataSingle['date_of_birth'];?></td>
-<?php
-$blood_group=$obj->select_any_one("tbl_manage_employee_add_new_employee_blood_group","".str_replace('tbl_','','tbl_manage_employee_add_new_employee')."_blood_group_id='".$formDataSingle['blood_group']."'");
-?>
-<td><?=$blood_group['value'];?></td>
-
-
-
-<?php
-$blood_group=$obj->select_any_one("tbl_manage_employee_department","".str_replace('tbl_','','tbl_manage_employee_department')."_id='".$formDataSingle['department']."'");
-?>
-<td><?=$blood_group['department_name'];?></td>
-<?php
-$blood_group=$obj->select_any_one("tbl_manage_employee_staff_positions","".str_replace('tbl_','','tbl_manage_employee_staff_positions')."_id='".$formDataSingle['position']."'");
-?>
-<td><?=$blood_group['position'];?></td>
-
-<td><?=$formDataSingle['emergency_contact_person'];?></td>
-<td><?=$formDataSingle['emergency_contact_number'];?></td>
-<?php
-$employee_status=$obj->select_any_one("tbl_manage_employee_add_new_employee_employee_status","".str_replace('tbl_','','tbl_manage_employee_add_new_employee')."_employee_status_id='".$formDataSingle['employee_status']."'");
-?>
-<td><?=$employee_status['value'];?></td>													
-													
-													<td><a class="btn btn-Primary" href="employee_reg.php?edit_id=<?=$formDataSingle['manage_employee_add_new_employee_id'];?>">Edit</a></td>							
-													<td><a href="#" onclick="UserDelete(<?=$formDataSingle['manage_employee_add_new_employee_id'];?>,<?=($count-1);?>);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><button class="btn btn-danger">Delete</button></a></td>
-		
-		
-											</tr>
-											<?php
-											$count++;
-											}
-											}
-											?>
-											</tbody>
-										</table>
-
-								</div>
-							</div>
-						</div>
-				</div>
-				
-			</div>
-            <!-- #/ container -->
-        </div>
-		
-        <!--**********************************
-            Content body end
-        ***********************************--> 
-		<script>
-		var IndexIncrement=<?=count($formDataFull);?>
-		</script>

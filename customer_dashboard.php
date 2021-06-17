@@ -1,107 +1,18 @@
-<!DOCTYPE html>
-<html class="h-100" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-   <title>FMS</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png"  href="https://computerpark.online/public/img/favicon/apple-icon-57x57.png">
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
-    <link href="css/style.css" rel="stylesheet">
-    
-</head>
-
-<body class="h-100">
-    
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-        </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
-    
-
-
-
-    <div class="login-form-bg h-100">
-        <div class="container h-100">
-            <div class="row justify-content-center h-100">
-                <div class="col-xl-8">
-                    <div class="form-input-content">
-                        <div class="card login-form mb-0">
-                            <div class="card-body pt-5">
-                                <center><img src="images/login.png" style="max-width:70%;max-height:70px" ></img>
-								</center>
-                              <br><br><br>
-							  <div class="row">
-		   
-							<div class="col-lg-6 col-sm-6" onclick="location.href='customer_reg.php'">
-							<div class="card gradient-1">
-								<div class="card-body">
-									<center>
-									<h3 class="card-title text-white">Customer Registration </h3>
-									
-										<h2 class="text-white"><i class="fa fa-user-circle-o"></i></h2>
-										
-									</center>
-									
-								</div>
-							</div>
-						</div> 
-						
-						<div class="col-lg-6 col-sm-6" onclick="location.href='login.php'">
-							<div class="card gradient-2">
-								<div class="card-body">
-									<center>
-									<h3 class="card-title text-white">customer Login</h3>
-									
-										<h2 class="text-white"><i class="fa fa-sign-in"></i></h2>
-										
-									</center>
-									
-								</div>
-							</div>
-						</div>
-						
-						
-		   
-		   
-		   </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-
-    
-
-    <!--**********************************
-        Scripts
-    ***********************************-->
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
-	<script src="js/login.js"></script>
-</body>
-</html>
-
-
-
-
-
+<?php
+/***************************************************************************
+* File name   : ../public/employee_leave.php
+* Begin       : 15 April 2021
+* Author: Anupama A
+***************************************************************************/
+require_once"../config/db_connect.php";
+$obj=new db_connect;
+include"../config/null_variables.php";
+$include_style_to_head="<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css'><link rel='stylesheet' href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css'>";//datatable style to null variable
+$include_script_to_footer='<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script><script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script><script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>';
+include_once"../templates/head.php";
+include_once"../templates/preloader.php";
+include_once"../templates/topbar.php";
+include_once"../templates/sidebar.php";
+include("../customer/customer.php");
+include_once"../templates/footer.php";
+?>

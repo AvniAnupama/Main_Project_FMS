@@ -1,40 +1,18 @@
-		   <!--**********************************
-            Content body start
-        ***********************************-->
-        <div class="content-body">
-
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="Home">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">damage entry</a></li>
-                    </ol>
-                </div>
-            </div>
-            <!-- row -->
-
-            <div class="container-fluid">
-				 <div class="container-fluid">
-				<div class="row">
-				<div class="col-lg-3 col-sm-6" onclick="location.href='damage_entry_manage_damage.php'">
-								<div class="card gradient-3">
-									<div class="card-body">
-										<center>
-										<h3 class="card-title text-white">Manage damage</h3>
-										
-											<h2 class="text-white"><i class="fa fa-book"></i></h2>
-											
-										</center>
-										
-									</div>
-								</div>
-							</div>
-				</div>
-			</div>
-				
-			</div>
-            <!-- #/ container -->
-        </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->  
+<?php
+/***************************************************************************
+* File name   : ../public/damage_entry.php
+* Begin       : 26 April 2021
+* Author: Anupama A
+***************************************************************************/
+require_once"../config/db_connect.php";
+$obj=new db_connect;
+include"../config/null_variables.php";
+$include_style_to_head="<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css'><link rel='stylesheet' href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css'>";//datatable style to null variable
+$include_script_to_footer='<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script><script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script><script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>';
+include_once"../templates/head.php";
+include_once"../templates/preloader.php";
+include_once"../templates/topbar.php";
+include_once"../templates/sidebar.php";
+include_once"../damage entry/damage_entry.php";//content
+include_once"../templates/footer.php";
+?>

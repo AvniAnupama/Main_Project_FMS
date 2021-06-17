@@ -1,80 +1,18 @@
-		   <!--**********************************
-            Content body start
-        ***********************************-->
-        <div class="content-body">
-
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="Home">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">category</a></li>
-                    </ol>
-                </div>
-            </div>
-            <!-- row -->
-
-            <div class="container-fluid">
-				 <div class="container-fluid">
-				<div class="row">
-				<?php
-						if($_SESSION['access']==1)
-						{
-						?>
-						<div class="col-lg-3 col-sm-6" onclick="location.href='Pages?module=category'">
-							<div class="card gradient-1">
-								<div class="card-body">
-									<h3 class="card-title text-white">Create Pages</h3>
-									<center>
-										<h2 class="text-white"><i class="fa fa-book"></i></h2>
-										
-									</center>
-									
-								</div>
-							</div>
-						</div>
-					<?php
-						}
-					$page_data=$obj->select_any_one("tbl_pages","module='category'");
-					if($page_data['pages']!='' ||$page_data['pages']=='[]')
-					{
-					$Module_Name=str_replace(" ","_","category");
-					$page_data_detaiils=json_decode($page_data['pages'],true);
-					$iconArray=array('fa-th-large','fa-ge','fa-folder','fa-support','fa-paperclip','fa-ravelry','fa-barcode','fa-bolt','fa-book','fa-braille','fa-bullseye');
-					$IconCount=count($iconArray);
-					$count=0;
-					foreach($page_data_detaiils as $page_data_detaiils_single)
-					{
-						$file_name=str_replace(' ','_',$page_data_detaiils_single['page_name']);
-						?>
-							<div class="col-lg-3 col-sm-6" onclick="location.href='<?=$Module_Name;?>-<?=$file_name;?>'">
-								<div class="card gradient-2">
-									<div class="card-body">
-										<center><h3 class="card-title text-white"><?=$page_data_detaiils_single['page_name'];?></h3>
-										
-											<h2 class="text-white"><i class="fa <?=$iconArray[$count];?>"></i></h2>
-											
-										</center>
-										
-									</div>
-								</div>
-							</div>
-						
-						<?php
-						$count++;
-						if($count==$IconCount)
-						{
-							$count=0;
-						}
-					}
-					}
-					?>
-				
-				</div>
-			</div>
-				
-			</div>
-            <!-- #/ container -->
-        </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->  
+<?php
+/***************************************************************************
+* File name   : ../public/category.php
+* Begin       : 13 January 2021
+* Author: Anupama A
+***************************************************************************/
+require_once"../config/db_connect.php";
+$obj=new db_connect;
+include"../config/null_variables.php";
+$include_style_to_head="<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css'><link rel='stylesheet' href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css'>";//datatable style to null variable
+$include_script_to_footer='<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script><script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script><script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script><script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>';
+include_once"../templates/head.php";
+include_once"../templates/preloader.php";
+include_once"../templates/topbar.php";
+include_once"../templates/sidebar.php";
+include_once"../category/category.php";//content
+include_once"../templates/footer.php";
+?>
